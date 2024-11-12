@@ -1,12 +1,9 @@
-import streamlit as st
-import random
-import os
-from dotenv import load_dotenv
-
-# Check and install dependencies if not present
 import subprocess
 import sys
+import os
+import random
 
+# Check and install dependencies if not present
 def install_if_missing(package):
     try:
         __import__(package)
@@ -18,7 +15,10 @@ install_if_missing("openai")
 install_if_missing("python-dotenv")
 install_if_missing("streamlit")
 
+# Import dependencies after ensuring installation
 import openai
+import streamlit as st
+from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()

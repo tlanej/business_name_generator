@@ -13,16 +13,14 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 # Function to generate business names using OpenAI API
 def generate_business_name(keywords, industry, style):
     prompt = f"Generate unique business names for a company in the {industry} industry using the following keywords: {keywords}. The names should be {style}."
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "user", "content": prompt}
-        ],
+    response = openai.Completion.create(
+        engine="gpt-3.5-turbo",
+        prompt=prompt,
         max_tokens=100,
         temperature=0.7,
         n=5
     )
-    business_names = [choice['message']['content'].strip() for choice in response['choices']]
+    business_names = [choice['text'].strip() for choice in response['choices']]
     return business_names
 
 # Streamlit app definition
